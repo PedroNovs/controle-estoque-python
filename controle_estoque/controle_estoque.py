@@ -50,3 +50,4 @@ while True:
 print('----------------------------PROGRAMA ENCERRADO----------------------------')
 consultar_estoque(estoque)
 
+#APRENDENDO
