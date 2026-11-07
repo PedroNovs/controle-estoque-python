@@ -1,4 +1,5 @@
 estoque = {'parafuso': 70 , 'manta': 160 , 'pneu': 80, 'forro': 95 , 'teto': 150}
+historico = []
 
 #FUNÇÕES ======
 
@@ -22,17 +23,16 @@ def relatorio(estoque):
             print(f'ATENÇÃO: Pouco {nome} no estoque')
 
 while True:
-    nomepecas = str(input('Nome da peça usada:')).lower().strip()
+    nomepecas = str(input('Nome da peça:')).lower().strip()
     if nomepecas == 'stop':
         break
     if nomepecas not in estoque:
         print('Não temos esse item em estoque')
     else:
         consultar_item(estoque,nomepecas)
-        try:
-            operacao = str(input('Deseja retirar ou repor peças?')).lower().strip()
-        except ValueError:
-            print ('RETIRAR OU REPOR???')
+        operacao = str(input('Deseja retirar ou repor peças?')).lower().strip()
+        if operacao not in ['retirar','repor']:
+            print('Digite apenas: (retirar / repor)')
             continue
         try:
             qntpecas = int(input('Quantidade de peças:'))
@@ -53,9 +53,12 @@ while True:
         else:
             print('Operação inválida')
 
-    relatorio(estoque)
+    historico.append(f'{nomepecas} - {operacao} - {qntpecas} unidades')
 
 print('----------------------------PROGRAMA ENCERRADO----------------------------')
 consultar_estoque(estoque)
+print('--------------------------HISTÓRICO DE MOVIMENTAÇÃO-----------------------------')
+for registros in historico:
+    print(registros)
 
 #APRENDENDO
