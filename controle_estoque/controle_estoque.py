@@ -29,8 +29,16 @@ while True:
         print('Não temos esse item em estoque')
     else:
         consultar_item(estoque,nomepecas)
-        operacao = str(input('Deseja retirar ou repor peças?')).lower().strip()
-        qntpecas = int(input('Quantidade de peças:'))
+        try:
+            operacao = str(input('Deseja retirar ou repor peças?')).lower().strip()
+        except ValueError:
+            print ('RETIRAR OU REPOR???')
+            continue
+        try:
+            qntpecas = int(input('Quantidade de peças:'))
+        except ValueError:
+            print ('Digite apenas números!')
+            continue
         if qntpecas <= 0:
             print('Quantidade inválida')
         elif operacao == 'retirar':
